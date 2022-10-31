@@ -17,7 +17,6 @@ public class Main {
 
     public static void main(String[] args) {
         File file = new File("C:/Users/juand/OneDrive/Documentos/Tarea Integradora II/CountryJson.txt");
-        System.out.println(file.exists());
         if (file.exists()) {
             ArrayList<Country> people = new ArrayList<>();
             try {
@@ -30,7 +29,6 @@ public class Main {
                     json = line;
                 }
                 fis.close();
-                System.out.println(json);
 
                 Gson gson = new Gson();
                 Country[] peopleFromJson = gson.fromJson(json, Country[].class);
@@ -59,7 +57,6 @@ public class Main {
                     json = line;
                 }
                 fis.close();
-                System.out.println(json);
 
                 Gson gson = new Gson();
                 City[] peopleFromJson = gson.fromJson(json, City[].class);
