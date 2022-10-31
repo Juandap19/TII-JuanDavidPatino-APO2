@@ -131,7 +131,7 @@ public class Main {
     }
 
     public static void importDataSQL(){
-        String ruta ="C:Users/juand/OneDrive/Documentos/Tarea Integradora II/comandos.SQL";
+        String ruta ="C:/Users/juand/OneDrive/Documentos/Tarea Integradora II/comandos.SQL";
         File file=new File(ruta);
         try{
             FileInputStream fis=new FileInputStream(file);
