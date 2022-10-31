@@ -1,60 +1,79 @@
 package ui;
 
+import com.google.gson.Gson;
 import model.*;
 import exceptions.*;
 
-import java.io.File;
+import java.io.*;
 import java.util.Scanner;
 import javax.swing.*;
 import java.util.ArrayList;
+
+import static java.lang.Double.parseDouble;
 
 public class Main {
     public static Scanner lc = new Scanner(System.in);
     public static Controladora ct = new Controladora();
 
     public static void main(String[] args) {
+        File file = new File("C:/Users/juand/OneDrive/Documentos/Tarea Integradora II/CountryJson.txt");
+        System.out.println(file.exists());
+        if (file.exists()) {
+            ArrayList<Country> people = new ArrayList<>();
+            try {
+                FileInputStream fis = new FileInputStream(file);
+                BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
 
-//        String path = "C:/Users/juand/OneDrive/Documentos/Tarea Integradora II";
-//        File folder = new File(path);
-//
-//        String[] files = folder.list();
-//        for(String name : files){
-//            System.out.println(name);
-//        }
-//
-//        try {
-//            //Referenciar un ARCHIVO
-//            File archivo = new File(path+"/miarchivo.txt");
-//            System.out.println("exists: "+archivo.exists());
-//
-//            FileInputStream fis = new FileInputStream(archivo);
-//            BufferedReader reader = new BufferedReader(
-//                    new InputStreamReader(fis)
-//            );
-//            String line;
-//            while(( line = reader.readLine()) != null){
-//                System.out.println(line);
-//            }
-//            fis.close();
-//
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-        File archivo;
-        String ruta ="C:/Users/juand/OneDrive/Documentos/Tarea Integradora II";
-        JFileChooser chooser = new JFileChooser(ruta);
-        chooser.setCurrentDirectory(new java.io.File(".txt"));
-        if((chooser.showDialog(null, "Abrir"))== JFileChooser.APPROVE_OPTION){
-            archivo = chooser.getSelectedFile();
-            if(archivo.canRead()){
-                if(archivo.getName().endsWith(".txt")){
-                    ruta =archivo.getAbsoluteFile().toString();
-                }else{
-                    JOptionPane.showMessageDialog(null, "Archivo con diferente extensión","Error al cargar el archivo",2);
+                String json = "";
+                String line;
+                if ((line = reader.readLine()) != null) {
+                    json = line;
                 }
+                fis.close();
+                System.out.println(json);
+
+                Gson gson = new Gson();
+                Country[] peopleFromJson = gson.fromJson(json, Country[].class);
+
+                for (Country p : peopleFromJson) {
+                    people.add(p);
+                }
+                ct.setCountries(people);
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+        }
+        file = new File("C:/Users/juand/OneDrive/Documentos/Tarea Integradora II/CityJson.txt");
+        if(file.exists()){
+            ArrayList<City> people = new ArrayList<>();
+            try {
+                FileInputStream fis = new FileInputStream(file);
+                BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
+
+                String json = "";
+                String line;
+                if ((line = reader.readLine()) != null) {
+                    json = line;
+                }
+                fis.close();
+                System.out.println(json);
+
+                Gson gson = new Gson();
+                City[] peopleFromJson = gson.fromJson(json, City[].class);
+
+                for (City p : peopleFromJson) {
+                    people.add(p);
+                }
+                ct.setCities(people);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
 
         int option = 0;
@@ -72,12 +91,17 @@ public class Main {
                     importDataSQL();
                     break;
                 case 3:
+                    saveData();
                     break;
             }
 
         }while(option != 3);
     }
 
+    private static void saveData() {
+        ct.saveCountryData();
+        ct.saveCityData();
+    }
 
     private static void calcularComando() throws CommandWithOutLogic {
         System.out.println("////Command console////\n" +
@@ -90,10 +114,6 @@ public class Main {
         ct.ordenarPaisesPor(comandoArray);
     }
 
-
-
-
-
     public static int menu() {
         System.out.println("////Menu////\n" +
                 "[1]. Insertar Comando.\n" +
@@ -103,7 +123,6 @@ public class Main {
         lc.nextLine();
         return option;
     }
-
 
     public static void registrarPais(String comando){
         try{
@@ -115,22 +134,21 @@ public class Main {
     }
 
     public static void importDataSQL(){
-        File archivo;
-        String ruta ="C:/Users/juand/OneDrive/Documentos/Tarea Integradora II";
-        JFileChooser chooser = new JFileChooser(ruta);
-        chooser.setCurrentDirectory(new java.io.File(".txt"));
-        if((chooser.showDialog(null, "Abrir"))== JFileChooser.APPROVE_OPTION){
-            archivo = chooser.getSelectedFile(); 
-            if(archivo.canRead()){
-                if(archivo.getName().endsWith(".txt")){
-                    ruta =archivo.getAbsoluteFile().toString();
-                }else{
-                    JOptionPane.showMessageDialog(null, "Archivo con diferente extensión","Error al cargar el archivo",2);
-                }
+        String ruta ="C:Users/juand/OneDrive/Documentos/Tarea Integradora II/comandos.SQL";
+        File file=new File(ruta);
+        try{
+            FileInputStream fis=new FileInputStream(file);
+            BufferedReader reader= new BufferedReader(new InputStreamReader(fis));
+            String line;
+            while ((line=reader.readLine())!=null){
+                ct.validarComandos(line);
             }
+        }catch(IOException e){
+            e.printStackTrace();
+        } catch (ComandoInvalidoException e){
+            System.out.println(e);
         }
 
     }
-
 
 }

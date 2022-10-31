@@ -1,25 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="34719b78-5b95-4b12-a523-7b9f8ebe1408" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tarea Integradora II.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/exceptions/ComandoInvalidoException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/exceptions/CommandWithOutLogic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/exceptions/CountryNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/exceptions/IncorrectFormatException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/exceptions/NoCountryIdException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Chooser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/City.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Controladora.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Country.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/MainTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/Main.java" afterDir="false" />
+    <list default="true" id="34719b78-5b95-4b12-a523-7b9f8ebe1408" name="Changes" comment="&quot;First Commid&#10;Problema con city u know - duro&#10;Verificacion de que ese id del pais exista pero no al agregar pais si no al registrar un nuevo pais para que no &#10;se repita. - facil&#10;Persistencia - facil&#10;SQL - facil&#10;Mas Excepciones - facil pero largo.&quot;">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea Integradora II.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Tarea Integradora II.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Controladora.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Controladora.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +42,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/juand/OneDrive/Documentos/Tarea Integradora II",
+    "last_opened_file_path": "C:/Users/juand/OneDrive/Documentos/Tarea Integradora II/src/lib/gson-2.9.1.jar",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"
@@ -69,6 +55,26 @@
       <recent name="ui" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ui.Main" />
+      <module name="Tarea Integradora II" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -78,6 +84,14 @@
       <option name="presentableId" value="Default" />
       <updated>1667009304596</updated>
     </task>
+    <task id="LOCAL-00001" summary="&quot;First Commid&#10;Problema con city u know - duro&#10;Verificacion de que ese id del pais exista pero no al agregar pais si no al registrar un nuevo pais para que no &#10;se repita. - facil&#10;Persistencia - facil&#10;SQL - facil&#10;Mas Excepciones - facil pero largo.&quot;">
+      <created>1667160998644</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1667160998644</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -90,5 +104,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="&quot;First Commid&#10;Problema con city u know - duro&#10;Verificacion de que ese id del pais exista pero no al agregar pais si no al registrar un nuevo pais para que no &#10;se repita. - facil&#10;Persistencia - facil&#10;SQL - facil&#10;Mas Excepciones - facil pero largo.&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;First Commid&#10;Problema con city u know - duro&#10;Verificacion de que ese id del pais exista pero no al agregar pais si no al registrar un nuevo pais para que no &#10;se repita. - facil&#10;Persistencia - facil&#10;SQL - facil&#10;Mas Excepciones - facil pero largo.&quot;" />
   </component>
 </project>

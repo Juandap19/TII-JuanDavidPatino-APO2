@@ -4,10 +4,17 @@ import exceptions.ComandoInvalidoException;
 import exceptions.IncorrectFormatException;
 
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import exceptions.*;
+
+import com.google.gson.Gson;
 
 import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
@@ -43,7 +50,6 @@ public class Controladora {
                     System.out.println();
                 }
             } else {
-                System.out.println(countries.get(0).getId());
                 throw new CountryNotFoundException("The Country with the ID:"+terceraParte[2]+" haven`t registered yet.");
             }
         }catch (CountryNotFoundException e){
@@ -62,16 +68,16 @@ public class Controladora {
     public String arrayPaisYaSort(ArrayList<Country> aux, String factorDeOrdenamiento) {
         switch (factorDeOrdenamiento){
             case "name" -> {
-                sortByName(aux);
+                aux = sortByName(aux);
             }
             case "id" -> {
-                sortById(aux);
+                aux = sortById(aux);
             }
             case "population" -> {
                 aux = sortByPop(aux);
             }
             case "countryCode" -> {
-                sortByCountryCode(aux);
+                aux = sortByCountryCode(aux);
             }
 
         }
@@ -82,20 +88,15 @@ public class Controladora {
         return message;
     }
 
-    private void sortByName(ArrayList<Country> aux) {
+    private ArrayList<Country> sortByName(ArrayList<Country> aux) {
         Collections.sort(aux, new Comparator<Country>() {
             @Override
             public int compare(Country o1, Country o2) {
-                if(o1.getName().compareTo(o2.getName()) >=1){
-                    return 1;
-                }else if(o1.getName().compareTo(o2.getName()) <=-1){
-                    return -1;
-                }else{
-                    return 0;
-                }
+                return o1.getName().compareTo(o2.getName());
             }
         });
 
+        return aux;
     }
     private ArrayList<Country> sortByPop(ArrayList<Country> aux) {
         Collections.sort(aux, new Comparator<Country>() {
@@ -113,36 +114,26 @@ public class Controladora {
         return aux;
 
     }
-    private void sortByCountryCode(ArrayList<Country> aux) {
+    private ArrayList<Country> sortByCountryCode(ArrayList<Country> aux) {
         Collections.sort(aux, new Comparator<Country>() {
             @Override
             public int compare(Country o1, Country o2) {
-                if(o1.getCountryCode().compareTo(o2.getCountryCode()) >=1){
-                    return 1;
-                }else if(o1.getCountryCode().compareTo(o2.getCountryCode()) <=-1){
-                    return -1;
-                }else{
-                    return 0;
-                }
+                return o1.getCountryCode().compareTo(o2.getCountryCode());
             }
         });
 
+        return aux;
     }
 
-    private void sortById(ArrayList<Country> aux) {
+    private ArrayList<Country> sortById(ArrayList<Country> aux) {
         Collections.sort(aux, new Comparator<Country>() {
             @Override
             public int compare(Country o1, Country o2) {
-                if(o1.getId().compareTo(o2.getId()) >=1){
-                    return 1;
-                }else if(o1.getId().compareTo(o2.getId()) <=-1){
-                    return -1;
-                }else{
-                    return 0;
-                }
+                return o1.getId().compareTo(o2.getId());
             }
         });
 
+        return aux;
     }
 
     public void validarComandos(String comando) throws ComandoInvalidoException{
@@ -152,7 +143,6 @@ public class Controladora {
         if (valores.length == 2){
             String [] primeraParte = valores[0].split(" ");
             String [] segundaParte = valores[1].split(" ");
-            System.out.println(primeraParte.length+"/"+segundaParte.length);
             String me = "";
             for (int i = 0; i < segundaParte.length; i++) {
                 me += segundaParte[i];
@@ -162,25 +152,38 @@ public class Controladora {
                 if(primeraParte[0].equalsIgnoreCase("insert")){
                     if (primeraParte[1].equalsIgnoreCase("INTO") ){
                         if(primeraParte[2].equalsIgnoreCase("countries")) {
+                            if(!IDRepetido(terceraParte[0])) {
                                 addPais(terceraParte);
                                 System.out.println("Pais Registrado Exitosamente.");
+                            }else{
+                                throw new ComandoInvalidoException("The Id is already registered with an another Country.");
+                            }
                         }else if(primeraParte[2].equalsIgnoreCase("cities")){
                                 addCity(terceraParte);
                         }else {
-                            throw new ComandoInvalidoException();
+                            throw new ComandoInvalidoException("palabra cities o country no encontrada");
                         }
                     }else {
-                        throw new ComandoInvalidoException();
+                        throw new ComandoInvalidoException("palabra into no encontrada ");
                     }
                 }else{
-                    throw new ComandoInvalidoException();
+                    throw new ComandoInvalidoException("Insert no encontrado");
                 }
             }else {
-                throw new ComandoInvalidoException();
+                throw new ComandoInvalidoException("Comando con un length invalido");
             }
         }else {
-            throw new ComandoInvalidoException();
+            throw new ComandoInvalidoException("comando invalido");
         }
+    }
+
+    private boolean IDRepetido(String id) {
+        for (int i = 0; i < countries.size(); i++) {
+            if (id.equals(countries.get(i).getId())){
+                return true;
+            }
+        }
+        return false;
     }
 
     private void verificarFormato(String id, String name, String pop, String countryCode) throws IncorrectFormatException {
@@ -234,7 +237,7 @@ public class Controladora {
             return false;
     }
 
-    public ArrayList<Country> busquedaYFIltradoPaises(String[] array) {
+    public ArrayList<Country> busquedaYFIltradoPaises(String[] array) throws ComandoInvalidoException{
         ArrayList<Country> aux = new ArrayList<>();
         if(array.length == 8 || array.length == 11){
             String restriccion = array[7];
@@ -282,7 +285,7 @@ public class Controladora {
                     }
                 }
                 default -> {
-                    System.out.println("exception parametro no valido");
+                    throw new ComandoInvalidoException("Paramentro no valido");
                 }
             }
 
@@ -324,7 +327,7 @@ public class Controladora {
             return false;
     }
 
-    public void deleteCountry(String restriccion, String operadorLogico, String comparador) {
+    public void deleteCountry(String restriccion, String operadorLogico, String comparador) throws ComandoInvalidoException {
         ArrayList<Country> aux = new ArrayList<>();
         switch (restriccion) {
             case "id" -> {
@@ -440,21 +443,12 @@ public class Controladora {
                 }
             }
             default -> {
-                System.out.println("exception parametro no valido");
+                throw new ComandoInvalidoException("Parametro no valido");
             }
         }
     }
 
     //Separacion de city - Pais
-
-    private  City searchCity(String cityID) {
-        for (int i = 0; i < cities.size(); i++) {
-            if(cities.get(i).getId().equalsIgnoreCase(cityID)){
-                return cities.get(i);
-            }
-        }
-        return  null;
-    }
 
     public String arrayCityYaSort(ArrayList<City> aux, String factorDeOrdenamiento) {
         switch (factorDeOrdenamiento){
@@ -484,13 +478,7 @@ public class Controladora {
         Collections.sort(aux, new Comparator<City>() {
             @Override
             public int compare(City o1, City o2) {
-                if(o1.getName().compareTo(o2.getName()) >=1){
-                    return 1;
-                }else if(o1.getName().compareTo(o2.getName()) <=-1){
-                    return -1;
-                }else{
-                    return 0;
-                }
+                return o1.getName().compareTo(o2.getName());
             }
 
         });
@@ -500,9 +488,9 @@ public class Controladora {
         Collections.sort(aux, new Comparator<City>() {
             @Override
             public int compare(City o1, City o2) {
-                if(o1.getPopulation() > o2.getPopulation()){
+                if(o1.getPopulation() < o2.getPopulation()){
                     return -1;
-                } else if (o1.getPopulation() < o2.getPopulation()) {
+                } else if (o1.getPopulation() > o2.getPopulation()) {
                     return 1;
                 }else{
                     return 0;
@@ -516,13 +504,7 @@ public class Controladora {
         Collections.sort(aux, new Comparator<City>() {
             @Override
             public int compare(City o1, City o2) {
-                if(o1.getCountryID().compareTo(o2.getCountryID()) >=1){
-                    return 1;
-                }else if(o1.getCountryID().compareTo(o2.getCountryID()) <=-1){
-                    return -1;
-                }else{
-                    return 0;
-                }
+                return o1.getCountryID().compareTo(o2.getCountryID());
             }
         });
 
@@ -532,13 +514,7 @@ public class Controladora {
         Collections.sort(aux, new Comparator<City>() {
             @Override
             public int compare(City o1, City o2) {
-                if(o1.getId().compareTo(o2.getId()) >=1){
-                    return 1;
-                }else if(o1.getId().compareTo(o2.getId()) <=-1){
-                    return -1;
-                }else{
-                    return 0;
-                }
+               return o1.getId().compareTo(o2.getId());
             }
         });
 
@@ -550,7 +526,7 @@ public class Controladora {
         if(array.length == 8 || array.length == 11){
             String restriccion = array[6];
             String restriccion2 = array[5];
-            String comparador = array[array.length-1];
+            String comparador = array[7];
             switch (restriccion2) {
                 case "id" -> {
                     switch (restriccion) {
@@ -595,6 +571,7 @@ public class Controladora {
                             }
                         }
                         case "=" -> {
+                            System.out.println("here");
                             for (int i = 0; i < cities.size(); i++) {
                                 if (cities.get(i).getName().compareTo(comparador) == 0) {
                                     aux.add(cities.get(i));
@@ -810,9 +787,13 @@ public class Controladora {
             registrarPais(comando);
         } else if (comandoArray[0].equalsIgnoreCase("select") && comandoArray[1].equalsIgnoreCase("*") && comandoArray[2].equalsIgnoreCase("from") && comandoArray.length == 8 || comandoArray.length == 4 && comandoArray[3].equalsIgnoreCase("countries") || comandoArray[3].equalsIgnoreCase("cities")) {
             if(ct.isCountryByString(comandoArray[3])){
-                ArrayList<Country> aux =  ct.busquedaYFIltradoPaises(comandoArray);
-                for (Country obj : aux){
-                    System.out.println(obj.getName());
+                try {
+                    ArrayList<Country> aux = ct.busquedaYFIltradoPaises(comandoArray);
+                    for (Country obj : aux) {
+                        System.out.println(obj.getName());
+                    }
+                }catch (ComandoInvalidoException e){
+                    System.out.println(e);
                 }
             }else {
                 ArrayList<City> aux =  ct.busquedaYFIltradoCities(comandoArray);
@@ -829,13 +810,17 @@ public class Controladora {
 
         }else if(ct.delteValidacion(comandoArray)){
             if(isCountryByString(comandoArray[2])){
-//                ArrayList<Country> aux1= ct.getCountries();
-                deleteCountry(comandoArray[4],comandoArray[5],comandoArray[6]);
-//                ct.setCountries(aux1);
+                try {
+                    ArrayList<Country> aux1 = ct.getCountries();
+                    deleteCountry(comandoArray[4], comandoArray[5], comandoArray[6]);
+                    ct.setCountries(aux1);
+                }catch (ComandoInvalidoException e){
+                    System.out.println(e);
+                }
             }else{
-//                ArrayList<City> aux1= ct.getCities();
+                ArrayList<City> aux1= ct.getCities();
                 ct.deleteCity(comandoArray[4],comandoArray[5],comandoArray[6]);
-//                ct.setCities(aux1);
+                ct.setCities(aux1);
             }
         } else{
             throw new CommandWithOutLogic("The commad doesn`t follow a Logic Syntax");
@@ -845,11 +830,15 @@ public class Controladora {
     public void ordenarPaisesPor(String[] comandoArray) {
         String factorDeOrdenamiento = comandoArray[comandoArray.length-1];
         if(ct.isCountryByString(comandoArray[3])) {
-            ArrayList<Country> aux = ct.busquedaYFIltradoPaises(comandoArray);
-            for (int i = 0; i < aux.size(); i++) {
-                System.out.print(aux.get(i).toString());
+            try {
+                ArrayList<Country> aux = ct.busquedaYFIltradoPaises(comandoArray);
+                for (int i = 0; i < aux.size(); i++) {
+                    System.out.print(aux.get(i).toString());
+                }
+                System.out.println(ct.arrayPaisYaSort(aux, factorDeOrdenamiento));
+            }catch (ComandoInvalidoException e){
+                System.out.println(e);
             }
-            System.out.println(ct.arrayPaisYaSort(aux,factorDeOrdenamiento));
         }else{
             System.out.println("bigie");
             ArrayList<City> aux = ct.busquedaYFIltradoCities(comandoArray);
@@ -857,6 +846,41 @@ public class Controladora {
                 System.out.print(aux.get(i).toString());
             }
             System.out.println(ct.arrayCityYaSort(aux,factorDeOrdenamiento));
+        }
+    }
+
+    public void saveCountryData() {
+        Gson gson = new Gson();
+        String json = gson.toJson(countries);
+        System.out.print(json);
+
+        try {
+            FileOutputStream fos = new FileOutputStream(new File("CountryJson.txt"));
+            fos.write( json.getBytes(StandardCharsets.UTF_8) );
+            fos.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void saveCityData() {
+        Gson gson = new Gson();
+        String json = gson.toJson(cities);
+        System.out.print(json);
+
+        try {
+            FileOutputStream fos = new FileOutputStream(new File("CityJson.txt"));
+            fos.write(json.getBytes(StandardCharsets.UTF_8));
+            fos.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
