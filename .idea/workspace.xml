@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="34719b78-5b95-4b12-a523-7b9f8ebe1408" name="Changes" comment="&quot;First Commid&#10;Problema con city u know - duro&#10;Verificacion de que ese id del pais exista pero no al agregar pais si no al registrar un nuevo pais para que no &#10;se repita. - facil&#10;Persistencia - facil&#10;SQL - facil&#10;Mas Excepciones - facil pero largo.&quot;">
+    <list default="true" id="34719b78-5b95-4b12-a523-7b9f8ebe1408" name="Changes" comment="&quot;Integradora Lista&quot;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea Integradora II.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Tarea Integradora II.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Controladora.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Controladora.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,21 +31,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/juand/OneDrive/Documentos/Tarea Integradora II/src/lib/gson-2.9.1.jar",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/juand/OneDrive/Documentos/Tarea Integradora II/src/lib/gson-2.9.1.jar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="exceptions" />
@@ -91,7 +89,28 @@
       <option name="project" value="LOCAL" />
       <updated>1667160998644</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="&quot;Integradora Lista&quot;">
+      <created>1667245883414</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1667245883414</updated>
+    </task>
+    <task id="LOCAL-00003" summary="&quot;Integradora Lista&quot;">
+      <created>1667245938206</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1667245938206</updated>
+    </task>
+    <task id="LOCAL-00004" summary="&quot;Integradora Lista&quot;">
+      <created>1667246006907</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1667246006907</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -107,6 +126,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="&quot;First Commid&#10;Problema con city u know - duro&#10;Verificacion de que ese id del pais exista pero no al agregar pais si no al registrar un nuevo pais para que no &#10;se repita. - facil&#10;Persistencia - facil&#10;SQL - facil&#10;Mas Excepciones - facil pero largo.&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="&quot;First Commid&#10;Problema con city u know - duro&#10;Verificacion de que ese id del pais exista pero no al agregar pais si no al registrar un nuevo pais para que no &#10;se repita. - facil&#10;Persistencia - facil&#10;SQL - facil&#10;Mas Excepciones - facil pero largo.&quot;" />
+    <MESSAGE value="&quot;Integradora Lista&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;Integradora Lista&quot;" />
   </component>
 </project>

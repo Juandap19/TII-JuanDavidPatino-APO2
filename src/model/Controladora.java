@@ -852,7 +852,6 @@ public class Controladora {
     public void saveCountryData() {
         Gson gson = new Gson();
         String json = gson.toJson(countries);
-        System.out.print(json);
 
         try {
             FileOutputStream fos = new FileOutputStream(new File("CountryJson.txt"));
@@ -870,7 +869,6 @@ public class Controladora {
     public void saveCityData() {
         Gson gson = new Gson();
         String json = gson.toJson(cities);
-        System.out.print(json);
 
         try {
             FileOutputStream fos = new FileOutputStream(new File("CityJson.txt"));
